@@ -7,10 +7,11 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const configPath = path.join(__dirname , '..', 'config', 'config.js')
+console.log(configPath)
 const config = require(configPath)[env];
 const db = {};
 
-console.log(config)
+console.log(config, process.env.DB_DIALECT, process.env.NODE_ENV)
 
 let sequelize;
 if (config.use_env_variable) {
