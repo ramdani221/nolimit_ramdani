@@ -21,6 +21,9 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "chai": "^5.2.0",
+    "chai-http": "^5.1.1",
+    "mocha": "^11.1.0",
     "sequelize-cli": "^6.6.2"
   }
 }
