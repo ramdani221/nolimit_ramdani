@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
     openapi: "3.0.0",
     info: {
         title: "BE Test API Documentation",
