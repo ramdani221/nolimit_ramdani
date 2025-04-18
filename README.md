@@ -3,6 +3,7 @@
 ## Introduction
 
 This is an API that manages blog posts with a user authentication system using JWT.
+
 The output of this API consists of 7 endpoints as follows: 
 * Endpoint to create/register user.
 * Endpoint to login using email and password.
@@ -11,7 +12,7 @@ The output of this API consists of 7 endpoints as follows:
 * Endpoint to create a post, which must be authenticated user.
 * Endpoint to update a post, which must be authenticated user and user id must match post authorId.
 * Endpoint to delete a post, which must be authenticated user and user id must match post authorId.
-And this API has Unit test
+* And this API has Unit test
 
 ## Before You Begin
 
