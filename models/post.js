@@ -24,11 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING,
     authorId: DataTypes.INTEGER
   }, {
-    hooks: {
-      afterFind: (post, options) => {
-        if (!post) throw Error.message = { code: 404, message: "Post not found" }
-      }
-    },
     sequelize,
     modelName: 'Post',
   });

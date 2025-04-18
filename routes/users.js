@@ -6,7 +6,7 @@ var { checkInput, tokenValidate } = require('../services/services')
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
   try {
-    const users = await models.User.findAll()
+    const users = await models.User.findAll({attributes: {exclude: ['password', 'createdAt', 'updatedAt']}})
     res.status(200).json({ data: users })
   } catch (error) {
     res.status(500).json({ message: error.message || 'Failed to send Users data' })
@@ -22,7 +22,6 @@ router.put('/:id', async function (req, res, next) {
     await user.update(input)
     res.status(201).json({ data: user.sendUserData() })
   } catch (error) {
-    console.log(error)
     res.status(500).json({ message: error.message || error })
   }
 })

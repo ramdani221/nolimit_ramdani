@@ -7,8 +7,8 @@ const { tokenValidate, checkInput } = require('../services/services');
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
     try {
-        const users = await models.Post.findAll({ include: models.User })
-        res.status(200).json({ status: 'success', data: users })
+        const posts = await models.Post.findAll({ include: models.User })
+        res.status(200).json({ status: 'success', data: posts })
     } catch (error) {
         res.status(500).json({ status: 'failed', message: error.message })
     }
@@ -18,6 +18,7 @@ router.get('/:id', async function (req, res, next) {
     try {
         const id = req.params.id
         const post = await models.Post.findOne({ where: { id }, include: models.User })
+        if (!post) throw Error.message = { code: 404, message: "Post not found" }
         res.status(200).json({ status: 'success', data: post })
     } catch (error) {
         res.status(error.code || 500).json({ status: 'failed', message: error.message })
@@ -40,7 +41,8 @@ router.put('/:id', tokenValidate, async function (req, res, next) {
         const { content } = req.body
         const id = req.params.id
         checkInput({ content }, req.originalUrl)
-        const post = await models.Post.findOne({ where: { id }, include: models.User })
+        const post = await models.Post.findOne({ where: { id } })
+        if (!post) throw Error.message = { code: 404, message: "Post not found" }
         await post.checkAuthorId(req.user.id).update({ content, updatedAt: Date.now() })
         res.status(201).json({ status: 'success', data: post })
     } catch (error) {
@@ -52,6 +54,7 @@ router.delete('/:id', tokenValidate, async function (req, res, next) {
     try {
         const id = req.params.id
         const post = await models.Post.findOne({ where: { id } })
+        if (!post) throw Error.message = { code: 404, message: "Post not found" }
         await post.checkAuthorId(req.user.id).destroy()
         res.status(200).json({ status: 'success', data: post })
     } catch (error) {

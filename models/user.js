@@ -17,16 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
 
-    checkPassword = (password) => {
-      return compareSync(password, this.password)
-    }
+    checkPassword = (password) => compareSync(password, this.password)
 
     sendUserData = () => {
       return { id: this.id, email: this.email, name: this.name }
     }
 
     checkEmail = async () => {
-      if (await User.findOne({ where: { email: this.email } })) throw Error.message = {code: 409, message: 'Email has been used'}
+      if (await User.findOne({ where: { email: this.email } })) throw Error.message = {code: 409, message: 'Email already in use'}
     }
 
     hashPassword = () => {this.password = hashSync(this.password, saltRounds)}
@@ -46,9 +44,6 @@ module.exports = (sequelize, DataTypes) => {
         await user.checkEmail()
         user.hashPassword()
       },
-    },
-    defaultScope: {
-      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
     },
     sequelize,
     modelName: 'User',
