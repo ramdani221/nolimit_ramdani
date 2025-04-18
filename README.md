@@ -71,7 +71,9 @@ npm run test
 
 ## This application should run on port 3000 , you can access it through browser, just go to [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 
-### Default User
+## You can access the API documentation online by going to [https://nolimit-ramdani.up.railway.app/api-docs/](https://nolimit-ramdani.up.railway.app/api-docs/)
+
+### User seed
 ```sh
 id          :1
 name        :John Doe
