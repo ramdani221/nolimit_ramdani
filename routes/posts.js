@@ -8,8 +8,7 @@ const { tokenValidate, checkInput } = require('../services/services');
 router.get('/', async function (req, res, next) {
     try {
         const posts = await models.Post.findAll({ include: models.User })
-        console.log(posts)
-        res.status(200).json({code: 200, status: 'success', data: posts })
+        res.status(200).json({ status: 'success', data: posts })
     } catch (error) {
         res.status(500).json({ status: 'failed', message: error.message })
     }
